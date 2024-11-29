@@ -22,7 +22,7 @@ const HeroSection = () => {
 
             {/* Heading */}
             <div className="relative">
-              <h1 className="text-[5.5rem] leading-[1.1] font-bold mb-6">
+              <h1 className="text-[4.7rem] leading-[1.1] font-bold mb-6">
                 <span className="block transform hover:translate-x-2 transition-transform duration-300">Work Done</span>
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-[#DAFF00] px-6 py-2 hover:bg-black hover:text-white transition-colors duration-300 transform -rotate-1 hover:rotate-0">
@@ -46,7 +46,7 @@ const HeroSection = () => {
                 </button>
 
                 <div className="group cursor-pointer">
-                  <div className="text-5xl font-bold mb-1 group-hover:text-[#DAFF00] transition-colors">40K+</div>
+                  <div className="text-5xl font-bold mb-1 group-hover:text-[#9d00ff] transition-colors">5K+</div>
                   <div className="text-gray-500 group-hover:text-black transition-colors">Happy Clients</div>
                 </div>
               </div>
