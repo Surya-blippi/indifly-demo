@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Navigation from './components/layout/Navigation';
+import HeroSection from './components/sections/HeroSection';
+import ServicesSection from './components/sections/ServicesSection';
+import FeaturesSection from './components/sections/FeaturesSection';
 
-function App() {
+const App = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-[#FFFBF5]">
+      <Navigation isScrolled={isScrolled} />
+      <HeroSection />
+      <ServicesSection />
+      <FeaturesSection />
     </div>
   );
-}
+};
 
 export default App;
