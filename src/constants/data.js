@@ -2,26 +2,26 @@ export const services = [
     {
       title: "Logo Design",
       time: "2 hours",
-      price: "$99",
+      price: "$9",
       description: "AI-powered logo creation with expert refinement",
       bgColor: "from-blue-500 to-purple-500"
     },
     {
       title: "Lead Generation",
       time: "3 hours",
-      price: "$149",
+      price: "$59",
       description: "Qualified leads with detailed company info",
       bgColor: "from-purple-500 to-pink-500"
     },
     {
-      title: "Ad Creation",
+      title: "AI Ad Creation",
       time: "2 hours",
-      price: "$79",
+      price: "$119",
       description: "High-converting ads for all platforms",
       bgColor: "from-pink-500 to-red-500"
     },
     {
-      title: "Website Development",
+      title: "Website Dev",
       time: "4 hours",
       price: "$299",
       description: "Professional sites built at lightning speed",
