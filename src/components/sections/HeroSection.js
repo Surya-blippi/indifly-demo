@@ -55,18 +55,6 @@ const HeroSection = () => {
 
           {/* Right Column */}
           <div className="relative">
-            {/* Rotating Banner */}
-            <div className="absolute -top-6 -right-6 z-20 select-none">
-              <div className="relative w-[300px] h-[80px] group">
-                <div className="absolute inset-0 bg-black rounded-full transform -rotate-12 group-hover:rotate-0 transition-transform duration-500"></div>
-                <div className="absolute inset-0 flex items-center justify-center text-white whitespace-nowrap overflow-hidden rounded-full">
-                  <div className="animate-scrollText w-full text-center px-4 py-2 font-medium tracking-wider">
-                    FAST DELIVERY • AI POWERED • EXPERT VERIFIED • 
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Memoji Visual Area */}
             <div className="relative bg-gradient-to-br from-[#8B5CF6] to-[#6366F1] rounded-[2rem] overflow-hidden group transform hover:scale-[1.02] transition-all duration-500 hover:shadow-2xl">
               {/* Glass Effect */}
