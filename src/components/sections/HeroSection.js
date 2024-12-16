@@ -1,7 +1,10 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext'; // Importing useAuth
 
 const HeroSection = () => {
+  const { user, signInWithGoogle, logout } = useAuth(); // Accessing user and auth methods
+
   return (
     <div className="relative min-h-[95vh] flex items-center pt-20 overflow-hidden">
       {/* Background Elements */}
@@ -38,17 +41,45 @@ const HeroSection = () => {
                 in hours, not days
               </p>
 
-              {/* CTA Area */}
+              {/* Conditional CTA Buttons */}
               <div className="flex items-center gap-12">
-                <button className="group bg-black text-white px-8 py-4 rounded-full flex items-center gap-2 hover:gap-4 transition-all duration-300 hover:bg-[#DAFF00] hover:text-black transform hover:scale-105">
-                  <span className="font-medium">Start Project</span>
-                  <ChevronRight className="w-5 h-5 group-hover:animate-pulse" />
-                </button>
-
-                <div className="group cursor-pointer">
-                  <div className="text-5xl font-bold mb-1 group-hover:text-[#9d00ff] transition-colors">5K+</div>
-                  <div className="text-gray-500 group-hover:text-black transition-colors">Happy Clients</div>
-                </div>
+                {user ? (
+                  <>
+                    {/* Logout Button */}
+                    <button
+                      onClick={logout}
+                      className="group bg-black text-white px-8 py-4 rounded-full flex items-center gap-2 hover:gap-4 transition-all duration-300 hover:bg-[#DAFF00] hover:text-black transform hover:scale-105"
+                    >
+                      <span className="font-medium">Logout</span>
+                      <ChevronRight className="w-5 h-5 group-hover:animate-pulse" />
+                    </button>
+                    
+                    <div className="flex flex-col items-center">
+                      <img
+                        src={user.photoURL}
+                        alt={user.displayName}
+                        className="w-12 h-12 rounded-full"
+                      />
+                      <span className="text-gray-500 font-medium">{user.displayName}</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Sign-In Button */}
+                    <button
+                      onClick={signInWithGoogle}
+                      className="group bg-black text-white px-8 py-4 rounded-full flex items-center gap-2 hover:gap-4 transition-all duration-300 hover:bg-[#DAFF00] hover:text-black transform hover:scale-105"
+                    >
+                      <span className="font-medium">Sign In</span>
+                      <ChevronRight className="w-5 h-5 group-hover:animate-pulse" />
+                    </button>
+                    
+                    <div className="group cursor-pointer">
+                      <div className="text-5xl font-bold mb-1 group-hover:text-[#9d00ff] transition-colors">5K+</div>
+                      <div className="text-gray-500 group-hover:text-black transition-colors">Happy Clients</div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
