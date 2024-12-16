@@ -1,8 +1,11 @@
 import React from 'react';
-import { Search, Heart, ShoppingCart } from 'lucide-react';
+import { Search, Heart, ShoppingCart, LogIn, LogOut } from 'lucide-react';
 import { navLinks } from '../../constants/data';
+import { useAuth } from '../../context/AuthContext';
 
 const Navigation = ({ isScrolled }) => {
+  const { user, signInWithGoogle, logout } = useAuth();
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
@@ -31,6 +34,31 @@ const Navigation = ({ isScrolled }) => {
               0
             </span>
           </div>
+
+          {user ? (
+            <div className="flex items-center gap-4">
+              <img 
+                src={user.photoURL} 
+                alt={user.displayName}
+                className="w-8 h-8 rounded-full cursor-pointer"
+              />
+              <button 
+                onClick={logout}
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-[#DAFF00] hover:text-black transition-all"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Logout</span>
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={signInWithGoogle}
+              className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full hover:bg-[#DAFF00] hover:text-black transition-all"
+            >
+              <LogIn className="w-4 h-4" />
+              <span>Sign In</span>
+            </button>
+          )}
         </div>
       </div>
     </nav>

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Navigation from './components/layout/Navigation';
 import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import FeaturesSection from './components/sections/FeaturesSection';
+import Dashboard from './components/Dashboard';
 
-const App = () => {
+const MainContent = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, signInWithGoogle } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,14 +18,24 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (user) {
+    return <Dashboard />;
+  }
+
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
-      <Navigation isScrolled={isScrolled} />
+      <Navigation isScrolled={isScrolled} signIn={signInWithGoogle} />
       <HeroSection />
       <ServicesSection />
       <FeaturesSection />
     </div>
   );
 };
+
+const App = () => (
+  <AuthProvider>
+    <MainContent />
+  </AuthProvider>
+);
 
 export default App;
