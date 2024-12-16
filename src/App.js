@@ -4,11 +4,11 @@ import Navigation from './components/layout/Navigation';
 import HeroSection from './components/sections/HeroSection';
 import ServicesSection from './components/sections/ServicesSection';
 import FeaturesSection from './components/sections/FeaturesSection';
-import Dashboard from './components/Dashboard';
+import Form from './components/Form';
 
 const MainContent = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user, signInWithGoogle } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,12 +19,12 @@ const MainContent = () => {
   }, []);
 
   if (user) {
-    return <Dashboard />;
+    return <Form />;
   }
 
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
-      <Navigation isScrolled={isScrolled} signIn={signInWithGoogle} />
+      <Navigation isScrolled={isScrolled} />
       <HeroSection />
       <ServicesSection />
       <FeaturesSection />
