@@ -7,6 +7,7 @@ import {
   Megaphone,
   Globe
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext'; // Importing useAuth
 
 const services = [
   {
@@ -43,7 +44,7 @@ const services = [
   }
 ];
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, onGetStarted }) => {
   const { title, time, price, description, bgColor, icon } = service;
   
   return (
@@ -79,7 +80,11 @@ const ServiceCard = ({ service }) => {
             <span className="font-bold text-white text-lg">{price}</span>
           </div>
           
-          <button className="w-full bg-white text-black px-6 py-3.5 rounded-full font-semibold flex items-center justify-center group-hover:bg-[#DAFF00] transition-all duration-300 transform group-hover:scale-105">
+          {/* Get Started Button */}
+          <button
+            onClick={onGetStarted} // Call signInWithGoogle
+            className="w-full bg-white text-black px-6 py-3.5 rounded-full font-semibold flex items-center justify-center group-hover:bg-[#DAFF00] transition-all duration-300 transform group-hover:scale-105"
+          >
             <span className="text-lg">Get Started</span>
             <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -90,13 +95,19 @@ const ServiceCard = ({ service }) => {
 };
 
 const ServicesSection = () => {
+  const { signInWithGoogle } = useAuth(); // Access signInWithGoogle function
+
   return (
     <div id="services" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-8">
         <h2 className="text-4xl font-bold text-center mb-16">Our Services</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <ServiceCard 
+              key={index} 
+              service={service} 
+              onGetStarted={signInWithGoogle} // Pass signInWithGoogle function
+            />
           ))}
         </div>
       </div>

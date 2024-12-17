@@ -35,6 +35,11 @@ const FeaturesSection = () => {
           ))}
         </div>
       </div>
+
+      {/* Footer - All Rights Reserved */}
+      <div className="text-center mt-16">
+        <p className="text-gray-500 text-sm">&copy; {new Date().getFullYear()} Reven. All rights reserved.</p>
+      </div>
     </div>
   );
 };
