@@ -15,33 +15,42 @@ const RevenLanding = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Add title and description update
+  useEffect(() => {
+    document.title = 'Reven';
+    document.querySelector('meta[name="description"]').setAttribute(
+      'content', 
+      'Quick & Quality Services'
+    );
+  }, []);
+
   const services = [
     {
       title: "Logo Design",
-      time: "2 hours",
-      price: "$99",
+      time: "4 hours",
+      price: "$10",
       description: "AI-powered logo creation with expert refinement",
       bgColor: "from-blue-500 to-purple-500"
     },
     {
-      title: "Lead Generation",
-      time: "3 hours",
-      price: "$149",
-      description: "Qualified leads with detailed company info",
+      title: "Website Development",
+      time: "1 day",
+      price: "$100",
+      description: "Professional sites built at lightning speed",
       bgColor: "from-purple-500 to-pink-500"
     },
     {
-      title: "Ad Creation",
-      time: "2 hours",
-      price: "$79",
-      description: "High-converting ads for all platforms",
+      title: "App Development",
+      time: "3 days",
+      price: "$300",
+      description: "Full Stack mobile apps",
       bgColor: "from-pink-500 to-red-500"
     },
     {
-      title: "Website Development",
-      time: "4 hours",
-      price: "$299",
-      description: "Professional sites built at lightning speed",
+      title: "AI Ads",
+      time: "2 hours",
+      price: "$20",
+      description: "High-converting ads for all platforms",
       bgColor: "from-red-500 to-orange-500"
     }
   ];
@@ -103,7 +112,7 @@ const RevenLanding = () => {
             <div>
               <div className="inline-flex items-center bg-black text-white px-4 py-2 rounded-full mb-12">
                 <span className="w-2.5 h-2.5 bg-[#DAFF00] rounded-full mr-2"></span>
-                <span className="text-sm font-medium">#2024</span>
+                <span className="text-sm font-medium">Quick & Quality Services</span>
               </div>
 
               <h1 className="text-[5.5rem] leading-[1.1] font-bold mb-6">
@@ -117,7 +126,7 @@ const RevenLanding = () => {
               </h1>
 
               <p className="text-gray-600 text-xl mb-12 max-w-lg">
-                From logo designs to lead generation, we deliver professional results
+                From logo designs to app development, we deliver professional results
                 in hours, not days
               </p>
 
