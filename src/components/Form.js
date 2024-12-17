@@ -49,8 +49,8 @@ const Form = () => {
       name: 'Website Development',
       timeline: '1 day',
       speed: 'Rapid 24-hour turnaround!',
-      price: '1999',
-      priceLabel: 'Starts at ₹1,999',
+      price: '5999',
+      priceLabel: 'Starts at ₹5,999',
       icon: <Globe className="w-5 h-5" />,
       bgColor: 'bg-blue-100',
       iconColor: 'text-blue-600',
@@ -62,8 +62,8 @@ const Form = () => {
       name: 'App Development',
       timeline: '3 days',
       speed: 'Swift 3-day development!',
-      price: '4999',
-      priceLabel: 'Starts at ₹4,999',
+      price: '19,999',
+      priceLabel: 'Starts at ₹19,999',
       icon: <Smartphone className="w-5 h-5" />,
       bgColor: 'bg-emerald-100',
       iconColor: 'text-emerald-600',
@@ -150,6 +150,7 @@ const Form = () => {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">

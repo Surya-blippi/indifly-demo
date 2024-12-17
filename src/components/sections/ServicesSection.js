@@ -19,10 +19,18 @@ const services = [
     icon: <Palette className="h-12 w-12 text-white" />
   },
   {
-    title: "Lead Generation",
-    time: "3 hours",
-    price: "₹1299",
-    description: "Qualified leads with detailed company info",
+    title: "Website Dev",
+    time: "1 day",
+    price: "₹5,999",
+    description: "Professional sites built at lightning speed",
+    bgColor: "from-red-500 to-orange-500",
+    icon: <Globe className="h-12 w-12 text-white" />
+  },
+  {
+    title: "App Development",
+    time: "3 days",
+    price: "₹19,999",
+    description: "Full Stack mobile apps",
     bgColor: "from-purple-500 to-pink-500",
     icon: <Users className="h-12 w-12 text-white" />
   },
@@ -33,14 +41,6 @@ const services = [
     description: "High-converting ads for all platforms",
     bgColor: "from-pink-500 to-red-500",
     icon: <Megaphone className="h-12 w-12 text-white" />
-  },
-  {
-    title: "Website Dev",
-    time: "4 hours",
-    price: "₹1999",
-    description: "Professional sites built at lightning speed",
-    bgColor: "from-red-500 to-orange-500",
-    icon: <Globe className="h-12 w-12 text-white" />
   }
 ];
 
