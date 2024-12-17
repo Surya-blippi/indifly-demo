@@ -38,8 +38,8 @@ const Form = () => {
       name: 'Logo Design',
       timeline: '4 hours',
       speed: 'Express 4-hour delivery!',
-      price: '499',
-      priceLabel: 'Starts at ₹499',
+      price: '10',
+      priceLabel: 'Starts at $10',
       icon: <Palette className="w-5 h-5" />,
       bgColor: 'bg-violet-100',
       iconColor: 'text-violet-600',
@@ -51,8 +51,8 @@ const Form = () => {
       name: 'Website Development',
       timeline: '1 day',
       speed: 'Rapid 24-hour turnaround!',
-      price: '5999',
-      priceLabel: 'Starts at ₹5,999',
+      price: '100',
+      priceLabel: 'Starts at $100',
       icon: <Globe className="w-5 h-5" />,
       bgColor: 'bg-blue-100',
       iconColor: 'text-blue-600',
@@ -64,14 +64,27 @@ const Form = () => {
       name: 'App Development',
       timeline: '3 days',
       speed: 'Swift 3-day development!',
-      price: '19,999',
-      priceLabel: 'Starts at ₹19,999',
+      price: '300',
+      priceLabel: 'Starts at $300',
       icon: <Smartphone className="w-5 h-5" />,
       bgColor: 'bg-emerald-100',
       iconColor: 'text-emerald-600',
       note: 'Fast-track your app development journey',
       speedIcon: <Timer className="w-4 h-4 text-amber-500" />
-    }
+    },
+    {
+        id: 'ai-ads',
+        name: 'AI Ads',
+        timeline: '2 hours',
+        speed: 'Quick 2-hour delivery!',
+        price: '20',
+        priceLabel: 'Starts at $20',
+        icon: <Zap className="w-5 h-5" />,
+        bgColor: 'bg-amber-100',
+        iconColor: 'text-amber-600',
+        note: 'AI-powered ad creatives that convert',
+        speedIcon: <Timer className="w-4 h-4 text-amber-500" />
+      }
   ];
 
   const countryCodes = [
