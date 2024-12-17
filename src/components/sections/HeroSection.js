@@ -36,7 +36,7 @@ const HeroSection = () => {
               </h1>
 
               <p className="text-gray-600 text-xl mb-12 max-w-lg leading-relaxed">
-                From logo designs to websites, we deliver 
+                From logo designs to website & apps, we deliver 
                 <span className="text-black font-semibold"> professional results </span>
                 in hours, not days
               </p>
