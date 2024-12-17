@@ -16,11 +16,12 @@ import {
   Timer,
   Star,
   DollarSign,
-  Archive
+  Archive,
+  LogOut
 } from 'lucide-react';
 
 const Form = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [selectedServices, setSelectedServices] = useState([]);
   const [serviceDetails, setServiceDetails] = useState({});
   const [phone, setPhone] = useState('');
@@ -81,6 +82,14 @@ const Form = () => {
     { code: '+86', country: 'China' },
   ];
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
   // Fetch existing orders on component mount
   useEffect(() => {
     const fetchOrders = async () => {
@@ -133,6 +142,7 @@ const Form = () => {
       } else {
         const newServiceDetails = { ...serviceDetails };
         delete newServiceDetails[serviceId];
+        setServiceDetails(newServiceDetails);
         return prev.filter(id => id !== serviceId);
       }
     });
@@ -272,15 +282,24 @@ const Form = () => {
               <p className="text-gray-600">Let's create something amazing today</p>
             </div>
           </div>
-          <div className="text-right">
-            <div className="text-sm text-gray-500">
-              {new Date().toLocaleDateString('en-US', { 
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <div className="text-sm text-gray-500">
+                {new Date().toLocaleDateString('en-US', { 
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </div>
             </div>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              <span>Logout</span>
+            </button>
           </div>
         </div>
 
@@ -357,7 +376,6 @@ const Form = () => {
                                 {service.speed}
                               </div>
                             </div>
-                            
                             <div className="text-xs text-gray-500">
                               {service.note}
                             </div>
@@ -375,7 +393,7 @@ const Form = () => {
                       {selectedServices.includes(service.id) && (
                         <div className="pl-4 space-y-4 animate-fadeIn">
                           <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                               Tell us about your requirements
                             </label>
                             <textarea
