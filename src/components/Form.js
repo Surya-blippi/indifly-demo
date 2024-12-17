@@ -12,7 +12,10 @@ import {
   Check,
   AlertCircle,
   ChevronDown,
-  Loader2
+  Loader2,
+  Timer,
+  Star,
+  DollarSign
 } from 'lucide-react';
 
 const Form = () => {
@@ -30,34 +33,40 @@ const Form = () => {
       id: 'logo',
       name: 'Logo Design',
       timeline: '4 hours',
+      speed: 'Express 4-hour delivery!',
       price: '499',
       priceLabel: 'Starts at ₹499',
       icon: <Palette className="w-5 h-5" />,
       bgColor: 'bg-violet-100',
       iconColor: 'text-violet-600',
-      note: 'Price may vary based on complexity and customization requirements'
+      note: 'Professional logos, lightning-fast delivery, unbeatable prices',
+      speedIcon: <Zap className="w-4 h-4 text-amber-500" />
     },
     {
       id: 'website',
       name: 'Website Development',
       timeline: '1 day',
+      speed: 'Rapid 24-hour turnaround!',
       price: '1999',
       priceLabel: 'Starts at ₹1,999',
       icon: <Globe className="w-5 h-5" />,
       bgColor: 'bg-blue-100',
       iconColor: 'text-blue-600',
-      note: 'Price varies based on features and complexity (Landing Page/Full Stack)'
+      note: 'Quality websites delivered in record time',
+      speedIcon: <Timer className="w-4 h-4 text-amber-500" />
     },
     {
       id: 'app',
       name: 'App Development',
       timeline: '3 days',
+      speed: 'Swift 3-day development!',
       price: '4999',
       priceLabel: 'Starts at ₹4,999',
       icon: <Smartphone className="w-5 h-5" />,
       bgColor: 'bg-emerald-100',
       iconColor: 'text-emerald-600',
-      note: 'Price depends on platform (iOS/Android) and features'
+      note: 'Fast-track your app development journey',
+      speedIcon: <Timer className="w-4 h-4 text-amber-500" />
     }
   ];
 
@@ -143,20 +152,71 @@ const Form = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center bg-[#DAFF00] px-4 py-2 rounded-full mb-6">
+        {/* Greeting Section - Add this before the Enhanced Header */}
+<div className="mb-12 flex items-center justify-between">
+  <div className="flex items-center gap-4">
+    {user?.photoURL ? (
+      <img 
+        src={user.photoURL}
+        alt={user.displayName}
+        className="w-14 h-14 rounded-full border-2 border-[#DAFF00]"
+      />
+    ) : (
+      <div className="w-14 h-14 rounded-full bg-violet-100 border-2 border-[#DAFF00] flex items-center justify-center">
+        <span className="text-xl font-medium text-violet-600">
+          {user?.displayName?.charAt(0) || user?.email?.charAt(0)}
+        </span>
+      </div>
+    )}
+    <div>
+      <h2 className="text-2xl font-bold">
+        Welcome, {user?.displayName?.split(' ')[0] || 'there'}! 👋
+      </h2>
+      <p className="text-gray-600">Let's create something amazing today</p>
+    </div>
+  </div>
+  <div className="text-right">
+    <div className="text-sm text-gray-500">
+      {new Date().toLocaleDateString('en-US', { 
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })}
+    </div>
+  </div>
+</div>
+        {/* Enhanced Header */}
+        <div className="text-center mb-12 space-y-6">
+          <div className="inline-flex items-center bg-[#DAFF00] px-4 py-2 rounded-full">
             <Zap className="w-4 h-4 mr-2" />
-            <span className="text-sm font-medium">Quality Work Delivered Faster</span>
+            <span className="text-sm font-medium">Lightning-Fast Delivery</span>
           </div>
-          <h1 className="text-4xl font-bold mb-4">Complete Your Order</h1>
-          <p className="text-gray-600">Let's understand your requirements better</p>
+          
+          <h1 className="text-4xl font-bold">Complete Your Order</h1>
+          
+          <div className="flex justify-center gap-8 text-sm">
+            <div className="flex items-center gap-2">
+              <Timer className="w-5 h-5 text-violet-600" />
+              <span>Rapid Delivery</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Star className="w-5 h-5 text-amber-500" />
+              <span>Premium Quality</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <DollarSign className="w-5 h-5 text-green-500" />
+              <span>Competitive Pricing</span>
+            </div>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-          {/* Services Section */}
+          {/* Services Section with Enhanced Speed Indicators */}
           <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-6">Select Services</h2>
+            <h2 className="text-xl font-semibold mb-2">Select Services</h2>
+            <p className="text-gray-600 mb-6">Experience the perfect blend of speed, quality, and affordability</p>
+            
             <div className="grid gap-6">
               {services.map(service => (
                 <div key={service.id} className="space-y-4">
@@ -172,19 +232,27 @@ const Form = () => {
                       <div className={`${service.bgColor} p-3 rounded-lg mr-4`}>
                         {service.icon}
                       </div>
+                      
                       <div className="flex-grow">
                         <div className="flex justify-between items-center mb-1">
                           <h3 className="font-medium">{service.name}</h3>
                           <span className="font-bold">{service.priceLabel}</span>
                         </div>
-                        <div className="flex items-center text-sm text-gray-500">
+                        
+                        <div className="flex items-center text-sm text-gray-500 mb-1">
                           <Clock className="w-4 h-4 mr-1" />
-                          Delivered within {service.timeline}
+                          <span className="mr-2">Delivered within {service.timeline}</span>
+                          <div className="flex items-center gap-1 bg-amber-50 text-amber-600 px-2 py-0.5 rounded-full text-xs font-medium">
+                            {service.speedIcon}
+                            {service.speed}
+                          </div>
                         </div>
-                        <div className="text-xs text-gray-500 mt-1">
+                        
+                        <div className="text-xs text-gray-500">
                           {service.note}
                         </div>
                       </div>
+                      
                       <Check className={`ml-4 w-5 h-5 transition-opacity ${
                         selectedServices.includes(service.id) 
                           ? 'opacity-100 text-green-500' 
@@ -193,6 +261,7 @@ const Form = () => {
                     </div>
                   </div>
 
+                  {/* Service Details Input */}
                   {selectedServices.includes(service.id) && (
                     <div className="pl-4 space-y-4 animate-fadeIn">
                       <div>
@@ -217,7 +286,7 @@ const Form = () => {
             </div>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact Information Section */}
           <div className="mb-8">
             <h2 className="text-xl font-semibold mb-6">Contact Information</h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -281,13 +350,13 @@ const Form = () => {
             </div>
           </div>
 
-          {/* Payment Agreement */}
+          {/* Enhanced Agreement Section */}
           <div className="mb-12 p-6 bg-gray-50 rounded-xl">
             <div className="flex items-start gap-4">
               <MessageCircle className="w-5 h-5 text-violet-600 mt-1 flex-shrink-0" />
               <div className="space-y-4">
                 <p className="text-sm text-gray-600">
-                  Someone from our team will reach out to you shortly on your provided phone number.
+                  Our expert team will reach out to you shortly to discuss your requirements and provide a customized quote.
                 </p>
                 <div className="flex items-start">
                   <input
@@ -298,7 +367,7 @@ const Form = () => {
                     className="mt-1 h-5 w-5 rounded border-gray-300 text-violet-600 focus:ring-violet-500"
                   />
                   <label htmlFor="paymentAgreement" className="ml-3 text-sm text-gray-600">
-                    I understand that I'll need to pay once the order is confirmed. Payment will be required to start the timer. Final pricing will be confirmed based on requirements.
+                    I understand that the final pricing will be based on my specific requirements. Payment will be required to start the project timer.
                   </label>
                 </div>
               </div>
@@ -321,7 +390,7 @@ const Form = () => {
             {isSubmitting ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                Submitting...
+                Processing...
               </>
             ) : (
               <>
