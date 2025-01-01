@@ -20,7 +20,7 @@ const HeroSection = () => {
             {/* Year Tag */}
             <div className="group inline-flex items-center bg-black hover:bg-[#DAFF00] text-white hover:text-black px-5 py-2.5 rounded-full mb-12 cursor-pointer transition-all duration-300">
               <span className="w-2.5 h-2.5 bg-[#DAFF00] group-hover:bg-black rounded-full mr-2 transition-colors"></span>
-              <span className="text-sm font-medium tracking-wider">#2024</span>
+              <span className="text-sm font-medium tracking-wider">#2025</span>
             </div>
 
             {/* Heading */}
