@@ -67,35 +67,35 @@ export const OurVenturesSection = ({ venturesData }) => {
   };
 
   return (
-    <section id="our-ventures" ref={ref} className="py-32 px-6 bg-gradient-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
+    <section id="our-ventures" ref={ref} className="py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-gradient-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-orange-100/40 via-orange-50/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-blue-100/40 via-blue-50/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-gradient-to-br from-purple-50/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-0 w-1/2 md:w-1/3 h-1/3 bg-gradient-to-bl from-orange-100/40 via-orange-50/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-0 w-1/2 md:w-1/3 h-1/3 bg-gradient-to-tr from-blue-100/40 via-blue-50/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 md:w-1/2 h-1/2 bg-gradient-to-br from-purple-50/20 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Premium Section Header */}
+        {/* Premium Section Header - Mobile Optimized */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          className="mb-12 md:mb-16 lg:mb-20 text-center"
         >
-          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-orange-50 to-orange-100/50 rounded-full border border-orange-200/50 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-2 md:gap-3 mb-4 md:mb-6 px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-orange-50 to-orange-100/50 rounded-full border border-orange-200/50 backdrop-blur-sm">
             <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-            <span className="text-sm font-bold text-orange-600 tracking-wider uppercase">Our Portfolio</span>
+            <span className="text-xs md:text-sm font-bold text-orange-600 tracking-wider uppercase">Our Portfolio</span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-tight mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 leading-tight mb-4 md:mb-6 px-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Empowering{" "}
             <span className="relative inline-block">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600 animate-gradient">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600">
                 Ventures
               </span>
               <motion.div 
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
+                className="absolute -bottom-1 md:-bottom-2 left-0 right-0 h-0.5 md:h-1 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
                 initial={{ scaleX: 0 }}
                 animate={isInView ? { scaleX: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.5 }}
@@ -103,14 +103,14 @@ export const OurVenturesSection = ({ venturesData }) => {
             </span>
           </h2>
           
-          <p className="text-lg font-medium text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-base lg:text-lg font-medium text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             Comprehensive financial technology solutions designed to empower businesses 
             and individuals across India's digital economy
           </p>
         </motion.div>
 
-        {/* Main Content Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        {/* Main Content Layout - Mobile Optimized */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-start">
           
           {/* Enhanced Left Column - Category Navigation */}
           <div className="lg:col-span-4">
@@ -120,7 +120,7 @@ export const OurVenturesSection = ({ venturesData }) => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:sticky lg:top-24"
             >
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 {venturesData.map((category, index) => {
                   const categoryColors = getColorClasses(category.color);
                   const isActive = activeCategory === category.id;
@@ -132,7 +132,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                       onClick={() => handleCategoryChange(category.id)}
-                      className={`group w-full text-left p-5 rounded-2xl transition-all duration-300 border-2 relative overflow-hidden ${
+                      className={`group w-full text-left p-4 md:p-5 rounded-xl md:rounded-2xl transition-all duration-300 border-2 relative overflow-hidden ${
                         isActive 
                           ? 'shadow-xl scale-[1.02]'
                           : 'bg-white/80 backdrop-blur-sm border-gray-200 hover:border-gray-300 hover:shadow-lg hover:scale-[1.01]'
@@ -152,9 +152,9 @@ export const OurVenturesSection = ({ venturesData }) => {
                       )}
                       
                       <div className="flex items-center justify-between relative z-10">
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-3 md:space-x-4">
                           <motion.div 
-                            className="w-14 h-14 rounded-xl flex items-center justify-center text-xl font-bold shadow-lg transition-all duration-300"
+                            className="w-12 h-12 md:w-14 md:h-14 rounded-lg md:rounded-xl flex items-center justify-center text-lg md:text-xl font-bold shadow-lg transition-all duration-300"
                             style={{
                               background: isActive 
                                 ? `linear-gradient(135deg, ${categoryColors.accent}, ${categoryColors.accent}dd)`
@@ -167,7 +167,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                             {category.icon}
                           </motion.div>
                           <div>
-                            <h4 className={`font-bold text-lg mb-0.5 transition-colors ${isActive ? 'text-gray-900' : 'text-gray-700'}`}>
+                            <h4 className={`font-bold text-base md:text-lg mb-0.5 transition-colors ${isActive ? 'text-gray-900' : 'text-gray-700'}`}>
                               {category.title}
                             </h4>
                             <p className="text-xs font-medium text-gray-500">
@@ -177,7 +177,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                         </div>
                         
                         <motion.svg 
-                          className="w-5 h-5 transition-all duration-300" 
+                          className="w-4 h-4 md:w-5 md:h-5 transition-all duration-300 flex-shrink-0" 
                           style={{ color: isActive ? categoryColors.accent : '#9CA3AF' }}
                           animate={{ x: isActive ? 3 : 0 }}
                           fill="none" 
@@ -203,10 +203,10 @@ export const OurVenturesSection = ({ venturesData }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
                 transition={{ duration: 0.4 }}
-                className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden"
+                className="bg-white/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl border border-gray-200/50 overflow-hidden"
               >
-                {/* Premium Venture Tabs */}
-                <div className="border-b border-gray-100 p-6 bg-gradient-to-r from-gray-50/50 to-white/50">
+                {/* Premium Venture Tabs - Mobile Optimized */}
+                <div className="border-b border-gray-100 p-4 md:p-6 bg-gradient-to-r from-gray-50/50 to-white/50">
                   <div className="flex space-x-2 overflow-x-auto scrollbar-hide pb-1">
                     {currentCategory?.ventures.map((venture) => {
                       const ventureColors = getColorClasses(venture.color);
@@ -216,7 +216,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                         <motion.button
                           key={venture.id}
                           onClick={() => setActiveVenture(venture.id)}
-                          className={`relative px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 ${
+                          className={`relative px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl font-bold text-xs md:text-sm whitespace-nowrap transition-all duration-300 ${
                             isActiveVenture
                               ? 'text-white shadow-lg'
                               : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/80'
@@ -231,7 +231,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                         >
                           {isActiveVenture && (
                             <motion.div
-                              className="absolute inset-0 bg-white/20 rounded-xl"
+                              className="absolute inset-0 bg-white/20 rounded-lg md:rounded-xl"
                               layoutId="activeTab"
                               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
@@ -243,7 +243,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                   </div>
                 </div>
 
-                {/* Enhanced Venture Details */}
+                {/* Enhanced Venture Details - Mobile Optimized */}
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeVenture}
@@ -251,13 +251,13 @@ export const OurVenturesSection = ({ venturesData }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="p-8 md:p-10"
+                    className="p-6 md:p-8 lg:p-10"
                   >
-                    {/* Premium Venture Header - Following the structure: Title, Subtitle, Tagline */}
-                    <div className="mb-8">
-                      <div className="flex items-start space-x-5 mb-4">
+                    {/* Premium Venture Header - Mobile Optimized */}
+                    <div className="mb-6 md:mb-8">
+                      <div className="flex items-start space-x-3 md:space-x-5 mb-4">
                         <motion.div 
-                          className="w-20 h-20 rounded-2xl flex items-center justify-center text-3xl text-white shadow-xl relative overflow-hidden flex-shrink-0"
+                          className="w-16 h-16 md:w-20 md:h-20 rounded-xl md:rounded-2xl flex items-center justify-center text-2xl md:text-3xl text-white shadow-xl relative overflow-hidden flex-shrink-0"
                           style={{ 
                             background: `linear-gradient(135deg, ${colors.accent}, ${colors.accent}dd)` 
                           }}
@@ -268,26 +268,26 @@ export const OurVenturesSection = ({ venturesData }) => {
                         </motion.div>
                         
                         <div className="flex-1 min-w-0">
-                          {/* Title - Main venture name ONLY (e.g., just "Indipe") */}
-                          <div className="mb-3">
-                            <h3 className="text-4xl font-black text-gray-900 leading-none">
+                          {/* Title - Main venture name */}
+                          <div className="mb-2 md:mb-3">
+                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 leading-none">
                               {currentVenture.title}
                             </h3>
                           </div>
                           
-                          {/* Subtitle - Category type ONLY (e.g., just "Wealth Management") */}
-                          <div className="mb-4">
+                          {/* Subtitle - Category type */}
+                          <div className="mb-3 md:mb-4">
                             <p 
-                              className="text-lg font-bold"
+                              className="text-base md:text-lg font-bold"
                               style={{ color: colors.accent }}
                             >
                               {currentVenture.subtitle}
                             </p>
                           </div>
                           
-                          {/* Tagline - Short catchy phrase (e.g., "Seamless wealth creation...") */}
+                          {/* Tagline - Short catchy phrase */}
                           <div>
-                            <p className="text-base font-semibold text-gray-600 leading-relaxed">
+                            <p className="text-sm md:text-base font-semibold text-gray-600 leading-relaxed">
                               {currentVenture.tagline}
                             </p>
                           </div>
@@ -295,38 +295,38 @@ export const OurVenturesSection = ({ venturesData }) => {
                       </div>
                     </div>
 
-                    {/* Premium Description - Full paragraph */}
-                    <div className="mb-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100">
-                      <p className="text-gray-700 font-medium text-base leading-relaxed">
+                    {/* Premium Description - Mobile Optimized */}
+                    <div className="mb-6 md:mb-8 p-4 md:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl border border-gray-100">
+                      <p className="text-gray-700 font-medium text-sm md:text-base leading-relaxed">
                         {currentVenture.description}
                       </p>
                     </div>
 
-                    {/* Premium Key Features */}
-                    <div className="mb-8">
-                      <div className="flex items-center gap-3 mb-5">
+                    {/* Premium Key Features - Mobile Optimized */}
+                    <div className="mb-6 md:mb-8">
+                      <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-5">
                         <div 
-                          className="w-1 h-6 rounded-full"
+                          className="w-1 h-5 md:h-6 rounded-full"
                           style={{ backgroundColor: colors.accent }}
                         />
-                        <h4 className="text-xl font-black text-gray-900">Key Features</h4>
+                        <h4 className="text-lg md:text-xl font-black text-gray-900">Key Features</h4>
                       </div>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-3 md:gap-4">
                         {currentVenture.features.map((feature, index) => (
                           <motion.div 
                             key={index}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: index * 0.05 }}
-                            className="group flex items-start space-x-3 p-4 bg-white rounded-xl border-2 border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300"
+                            className="group flex items-start space-x-3 p-3 md:p-4 bg-white rounded-lg md:rounded-xl border-2 border-gray-100 hover:border-gray-200 hover:shadow-md transition-all duration-300"
                           >
                             <div 
-                              className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                              className="w-5 h-5 md:w-6 md:h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
                               style={{ backgroundColor: `${colors.accent}15` }}
                             >
                               <svg 
-                                className="w-3.5 h-3.5" 
+                                className="w-3 md:w-3.5 h-3 md:h-3.5" 
                                 style={{ color: colors.accent }}
                                 fill="currentColor" 
                                 viewBox="0 0 20 20"
@@ -334,7 +334,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             </div>
-                            <span className="text-gray-700 font-medium text-sm leading-relaxed flex-1">
+                            <span className="text-gray-700 font-medium text-xs md:text-sm leading-relaxed flex-1">
                               {feature}
                             </span>
                           </motion.div>
@@ -342,10 +342,10 @@ export const OurVenturesSection = ({ venturesData }) => {
                       </div>
                     </div>
 
-                    {/* Premium CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
+                    {/* Premium CTA Buttons - Mobile Optimized */}
+                    <div className="flex flex-col gap-3 md:gap-4 pt-4 md:pt-6 border-t border-gray-100">
                       <motion.button 
-                        className="group relative flex-1 text-white px-8 py-4 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                        className="group relative w-full text-white px-6 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl text-sm md:text-base font-bold shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
                         style={{ 
                           background: `linear-gradient(135deg, ${colors.accent}, ${colors.accent}dd)` 
                         }}
@@ -355,7 +355,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                         <span className="relative z-10 flex items-center justify-center space-x-2">
                           <span>{currentVenture.primaryCTA}</span>
                           <motion.svg 
-                            className="w-5 h-5" 
+                            className="w-4 h-4 md:w-5 md:h-5" 
                             fill="none" 
                             stroke="currentColor" 
                             viewBox="0 0 24 24"
@@ -369,7 +369,7 @@ export const OurVenturesSection = ({ venturesData }) => {
                       </motion.button>
                       
                       <motion.button 
-                        className="flex-1 px-8 py-4 rounded-xl text-base font-bold border-2 transition-all duration-300 hover:shadow-lg bg-white"
+                        className="w-full px-6 md:px-8 py-3 md:py-4 rounded-lg md:rounded-xl text-sm md:text-base font-bold border-2 transition-all duration-300 hover:shadow-lg bg-white"
                         style={{ 
                           borderColor: colors.accent,
                           color: colors.accent
