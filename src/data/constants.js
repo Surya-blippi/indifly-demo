@@ -1,13 +1,10 @@
 // Navigation items
 export const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'ventures', label: 'Ventures' },
-    { id: 'solutions', label: 'Solutions' },
-    { id: 'vision', label: 'Our Why' },
-    { id: 'incore', label: 'Our Core' },
-    { id: 'contact', label: 'Contact' }
-  ];
-  
+  { id: 'our-ventures', label: 'Our Portfolio' },
+  { id: 'incore', label: 'InCORE' },
+  { id: 'stats', label: 'INDsights' },
+  { id: 'vision', label: 'About Us' }
+];
 // Ventures data structure
 export const venturesData = [
   {

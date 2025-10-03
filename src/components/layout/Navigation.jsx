@@ -17,14 +17,15 @@ export const Navigation = ({
           : 'bg-gradient-to-b from-black/40 via-black/20 to-transparent backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3">
-        <div className="flex items-center justify-between">
-          {/* Enhanced Logo */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3">
+        <div className="relative flex items-center justify-between">
+          {/* Enhanced Logo - Left */}
           <motion.div 
-            className={`text-3xl font-black transition-all duration-500 cursor-pointer group ${
+            className={`text-2xl md:text-3xl font-black transition-all duration-500 cursor-pointer group z-10 flex-shrink-0 ${
               isScrolled ? 'text-gray-900' : 'text-white'
             }`}
             style={{ fontFamily: 'Montserrat, sans-serif' }}
+            onClick={() => scrollToSection('home')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -40,8 +41,8 @@ export const Navigation = ({
             </span>
           </motion.div>
           
-          {/* Premium Desktop Navigation */}
-          <div className="hidden md:flex items-center">
+          {/* Premium Desktop Navigation - Center */}
+          <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className={`flex items-center space-x-1 px-4 py-2 rounded-2xl transition-all duration-300 ${
               isScrolled 
                 ? 'bg-gray-50/80 border border-gray-100' 
@@ -51,7 +52,7 @@ export const Navigation = ({
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-6 py-3 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 group ${
+                  className={`relative px-5 py-3 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 group ${
                     activeSection === item.id
                       ? 'text-white shadow-lg transform scale-105'
                       : isScrolled 
@@ -88,11 +89,13 @@ export const Navigation = ({
                 </motion.button>
               ))}
             </div>
+          </div>
             
-            {/* CTA Button */}
+          {/* CTA Button - Right */}
+          <div className="hidden lg:flex flex-shrink-0 z-10">
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className={`ml-6 px-8 py-3 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-300 group overflow-hidden ${
+              className={`px-6 py-3 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-300 group overflow-hidden ${
                 isScrolled 
                   ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg hover:shadow-xl' 
                   : 'bg-white/20 border border-white/30 text-white hover:bg-white/30'
@@ -104,7 +107,7 @@ export const Navigation = ({
               transition={{ delay: 0.5 }}
             >
               <span className="relative z-10 flex items-center space-x-2">
-                <span>Get Started</span>
+                <span>Get in Touch</span>
                 <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -115,7 +118,7 @@ export const Navigation = ({
           
           {/* Enhanced Mobile Menu Button */}
           <motion.button
-            className={`md:hidden p-3 rounded-xl transition-all duration-300 ${
+            className={`lg:hidden p-3 rounded-xl transition-all duration-300 z-10 ${
               isScrolled 
                 ? 'text-gray-900 bg-gray-50/80 border border-gray-100' 
                 : 'text-white bg-white/10 border border-white/20'
@@ -150,7 +153,7 @@ export const Navigation = ({
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className="md:hidden mt-4"
+              className="lg:hidden mt-4"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -161,7 +164,10 @@ export const Navigation = ({
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.id}
-                      onClick={() => scrollToSection(item.id)}
+                      onClick={() => {
+                        scrollToSection(item.id);
+                        setMobileMenuOpen(false);
+                      }}
                       className={`w-full text-left py-4 px-6 rounded-xl transition-all duration-200 font-semibold group ${
                         activeSection === item.id
                           ? 'text-white shadow-lg transform scale-[0.98]'
@@ -201,7 +207,7 @@ export const Navigation = ({
                     transition={{ delay: 0.6 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Get Started
+                    Get in Touch
                   </motion.button>
                 </div>
               </div>

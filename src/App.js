@@ -26,7 +26,8 @@ const App = () => {
     setIsScrolled(scrolled > 50);
 
     // Simple section detection
-    const sections = ['home', 'ventures', 'solutions', 'vision', 'incore', 'stats', 'contact'];
+   
+    const sections = ['home', 'our-ventures', 'incore', 'stats', 'vision', 'contact'];
     const current = sections.find(section => {
       const element = document.getElementById(section);
       if (element) {
