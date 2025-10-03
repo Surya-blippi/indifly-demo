@@ -9,6 +9,11 @@ import { VisionSection } from './components/sections/VisionSection';
 import { CoreSection } from './components/sections/CoreSection';
 import { StatsSection } from './components/sections/StatsSection';
 import { ContactSection } from './components/sections/ContactSection';
+import { InStackPage } from './components/sections/InStackPage';
+import { InSurgePage } from './components/sections/InSurgePage';
+import { InSurePage } from './components/sections/InSurePage';
+import { InvolvePage } from './components/sections/InvolvePage';
+import InCorePage from './components/sections/InCorePage';
 import { navItems, coreProducts, venturesData } from './data/constants';
 import './styles/animations.css';
 
@@ -17,13 +22,13 @@ const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activePage, setActivePage] = useState(null); // 'instack', 'insurge', 'insure', 'involve', 'incore' or null
 
   // Simplified scroll handler
   const handleScroll = useCallback(() => {
     const scrolled = window.scrollY;
     setIsScrolled(scrolled > 50);
 
-    // Simple section detection
     const sections = ['home', 'our-ventures', 'incore', 'stats', 'vision', 'contact'];
     const current = sections.find(section => {
       const element = document.getElementById(section);
@@ -39,7 +44,6 @@ const App = () => {
     }
   }, [activeSection]);
 
-  // Simple scroll listener
   useEffect(() => {
     let timeoutId;
     const scrollListener = () => {
@@ -56,10 +60,7 @@ const App = () => {
     };
   }, [handleScroll]);
 
-  // FIXED: Mobile-friendly smooth scroll function
   const scrollToSection = useCallback((sectionId) => {
-    console.log('Scrolling to:', sectionId); // Debug log
-    
     const element = document.getElementById(sectionId);
     if (element) {
       const navHeight = 80;
@@ -71,14 +72,48 @@ const App = () => {
         behavior: 'smooth'
       });
       
-      // Close mobile menu after a small delay to ensure scroll starts
       setTimeout(() => {
         setMobileMenuOpen(false);
       }, 100);
-    } else {
-      console.error('Section not found:', sectionId); // Debug log
     }
   }, []);
+
+  // Updated to include all full-page views
+  const handleModalOpen = useCallback((modalId) => {
+    if (['instack', 'insurge', 'insure', 'involve', 'incore'].includes(modalId)) {
+      setActivePage(modalId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setActiveModal(modalId);
+    }
+  }, []);
+
+  // Full page view for individual products
+  if (activePage) {
+    return (
+      <div className="relative">
+        {/* Close Button */}
+        <button
+          onClick={() => {
+            setActivePage(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="fixed top-6 right-6 z-50 w-12 h-12 bg-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all duration-300 group"
+          aria-label="Close page"
+        >
+          <svg className="w-6 h-6 text-gray-900 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        
+        {activePage === 'incore' && <InCorePage />}
+        {activePage === 'instack' && <InStackPage />}
+        {activePage === 'insurge' && <InSurgePage />}
+        {activePage === 'insure' && <InSurePage />}
+        {activePage === 'involve' && <InvolvePage />}
+      </div>
+    );
+  }
 
   return (
     <div className="font-montserrat bg-gray-50 min-h-screen" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -105,9 +140,9 @@ const App = () => {
       <OurVenturesSection venturesData={venturesData} />
       
       {/* Core Technology Section */}
-      <CoreSection coreProducts={coreProducts} setActiveModal={setActiveModal} />
+      <CoreSection coreProducts={coreProducts} setActiveModal={handleModalOpen} />
       
-      {/* Stats Section - Our Journey, Measured */}
+      {/* Stats Section */}
       <StatsSection />
       
       {/* Contact Section */}
@@ -118,34 +153,13 @@ const App = () => {
         navItems={navItems}
         coreProducts={coreProducts}
         scrollToSection={scrollToSection}
-        setActiveModal={setActiveModal}
+        setActiveModal={handleModalOpen}
       />
 
-      {/* Modal */}
+      {/* Modal - for any other modals if needed */}
       {activeModal && (
         <Modal
-          product={activeModal === 'incore' ? {
-            id: 'incore',
-            title: 'inCORE',
-            subtitle: 'Central Technology Hub',
-            description: 'The heart of our ecosystem, inCORE provides the foundational infrastructure that powers all our financial technology solutions. Built for scalability, security, and seamless integration.',
-            icon: '⚡',
-            color: 'blue',
-            stats: [
-              { number: '99.9%', label: 'System Uptime' },
-              { number: '500M+', label: 'Transactions' },
-              { number: '24/7', label: 'Monitoring' },
-              { number: '50ms', label: 'Response Time' }
-            ],
-            features: [
-              'Scalable microservices architecture for high-volume transactions',
-              'Bank-grade security with multi-layer encryption',
-              'Comprehensive API ecosystem for seamless integrations',
-              'Real-time transaction processing with sub-second response',
-              'Automated monitoring and alerting system',
-              'Built-in regulatory compliance for RBI standards'
-            ]
-          } : coreProducts.find(p => p.id === activeModal)}
+          product={coreProducts.find(p => p.id === activeModal)}
           onClose={() => setActiveModal(null)}
         />
       )}
