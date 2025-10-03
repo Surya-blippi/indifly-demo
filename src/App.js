@@ -12,8 +12,6 @@ import { ContactSection } from './components/sections/ContactSection';
 import { navItems, coreProducts, venturesData } from './data/constants';
 import './styles/animations.css';
 
-
-
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -26,7 +24,6 @@ const App = () => {
     setIsScrolled(scrolled > 50);
 
     // Simple section detection
-   
     const sections = ['home', 'our-ventures', 'incore', 'stats', 'vision', 'contact'];
     const current = sections.find(section => {
       const element = document.getElementById(section);
@@ -59,16 +56,27 @@ const App = () => {
     };
   }, [handleScroll]);
 
-  // Smooth scroll function
+  // FIXED: Mobile-friendly smooth scroll function
   const scrollToSection = useCallback((sectionId) => {
+    console.log('Scrolling to:', sectionId); // Debug log
+    
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80;
+      const navHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
       window.scrollTo({
-        top: offsetTop,
+        top: offsetPosition,
         behavior: 'smooth'
       });
-      setMobileMenuOpen(false);
+      
+      // Close mobile menu after a small delay to ensure scroll starts
+      setTimeout(() => {
+        setMobileMenuOpen(false);
+      }, 100);
+    } else {
+      console.error('Section not found:', sectionId); // Debug log
     }
   }, []);
 
