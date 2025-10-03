@@ -160,17 +160,27 @@ export const Navigation = ({
                   {navItems.map((item, index) => (
                     <button
                       key={item.id}
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Mobile click:', item.id);
                         scrollToSection(item.id);
-                        setMobileMenuOpen(false);
+                        setTimeout(() => setMobileMenuOpen(false), 300);
                       }}
-                      className={`w-full text-left py-4 px-6 rounded-xl transition-all duration-200 font-semibold ${
+                      onTouchEnd={(e) => {
+                        e.preventDefault();
+                        console.log('Mobile touch:', item.id);
+                        scrollToSection(item.id);
+                        setTimeout(() => setMobileMenuOpen(false), 300);
+                      }}
+                      className={`w-full text-left py-4 px-6 rounded-xl transition-all duration-200 font-semibold touch-manipulation ${
                         activeSection === item.id
                           ? 'text-white shadow-lg'
-                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50 active:bg-gray-100'
                       }`}
                       style={{
-                        background: activeSection === item.id ? 'linear-gradient(135deg, #FF681E, #E04A00)' : undefined
+                        background: activeSection === item.id ? 'linear-gradient(135deg, #FF681E, #E04A00)' : undefined,
+                        WebkitTapHighlightColor: 'transparent'
                       }}
                     >
                       <div className="flex items-center justify-between">
@@ -184,11 +194,21 @@ export const Navigation = ({
                   
                   {/* Mobile CTA */}
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log('Mobile CTA click');
                       scrollToSection('contact');
-                      setMobileMenuOpen(false);
+                      setTimeout(() => setMobileMenuOpen(false), 300);
                     }}
-                    className="w-full mt-4 py-4 px-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      console.log('Mobile CTA touch');
+                      scrollToSection('contact');
+                      setTimeout(() => setMobileMenuOpen(false), 300);
+                    }}
+                    className="w-full mt-4 py-4 px-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200 touch-manipulation active:scale-95"
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
                   >
                     Get in Touch
                   </button>
