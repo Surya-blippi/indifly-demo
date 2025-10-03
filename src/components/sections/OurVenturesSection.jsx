@@ -67,12 +67,15 @@ export const OurVenturesSection = ({ venturesData }) => {
   };
 
   return (
-    <section id="our-ventures" ref={ref} className="py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-gradient-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
+    <section id="our-ventures" ref={ref} className="py-16 md:py-24 lg:py-32 px-4 md:px-6 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #FFF5EB 0%, #FFE8D6 25%, #FFF0E5 50%, #FFE8D6 75%, #FFF5EB 100%)' }}>
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-0 w-1/2 md:w-1/3 h-1/3 bg-gradient-to-bl from-orange-100/40 via-orange-50/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-0 w-1/2 md:w-1/3 h-1/3 bg-gradient-to-tr from-blue-100/40 via-blue-50/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 md:w-1/2 h-1/2 bg-gradient-to-br from-purple-50/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-0 w-1/2 md:w-1/3 h-1/3 bg-gradient-to-bl from-orange-200/30 via-orange-100/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-0 w-1/2 md:w-1/3 h-1/3 bg-gradient-to-tr from-orange-200/30 via-orange-100/20 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 md:w-1/2 h-1/2 bg-gradient-to-br from-orange-100/20 to-transparent rounded-full blur-3xl"></div>
+        {/* Additional orange accents */}
+        <div className="absolute top-10 left-10 w-40 h-40 bg-orange-300/10 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-orange-400/10 rounded-full blur-2xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
