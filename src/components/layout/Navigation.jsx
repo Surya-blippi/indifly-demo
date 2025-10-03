@@ -18,10 +18,10 @@ export const Navigation = ({
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3">
-        <div className="relative flex items-center justify-between lg:justify-start">
+        <div className="flex items-center justify-between">
           {/* Enhanced Logo - Left */}
           <motion.div 
-            className={`text-2xl md:text-3xl font-black transition-all duration-500 cursor-pointer group z-10 flex-shrink-0 ${
+            className={`text-2xl md:text-3xl font-black transition-all duration-500 cursor-pointer group z-20 ${
               isScrolled ? 'text-gray-900' : 'text-white'
             }`}
             style={{ fontFamily: 'Montserrat, sans-serif' }}
@@ -41,8 +41,8 @@ export const Navigation = ({
             </span>
           </motion.div>
           
-          {/* Premium Desktop Navigation - Center (absolute positioned only on desktop) */}
-          <div className="hidden lg:block lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
+          {/* Desktop Navigation Container - Only visible on desktop */}
+          <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
             <div className={`flex items-center space-x-1 px-4 py-2 rounded-2xl transition-all duration-300 ${
               isScrolled 
                 ? 'bg-gray-50/80 border border-gray-100' 
@@ -70,7 +70,6 @@ export const Navigation = ({
                 >
                   <span className="relative z-10">{item.label}</span>
                   
-                  {/* Animated background for active state */}
                   {activeSection === item.id && (
                     <motion.div
                       className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600"
@@ -79,10 +78,8 @@ export const Navigation = ({
                     />
                   )}
                   
-                  {/* Hover effect background */}
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500/20 to-orange-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                   
-                  {/* Bottom indicator line */}
                   <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-300 ${
                     activeSection === item.id ? 'w-8' : 'group-hover:w-6'
                   }`}></div>
@@ -91,8 +88,8 @@ export const Navigation = ({
             </div>
           </div>
             
-          {/* CTA Button - Right */}
-          <div className="hidden lg:flex flex-shrink-0 z-10">
+          {/* Desktop CTA Button - Right */}
+          <div className="hidden lg:block z-20">
             <motion.button
               onClick={() => scrollToSection('contact')}
               className={`px-6 py-3 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-300 group overflow-hidden ${
@@ -116,22 +113,21 @@ export const Navigation = ({
             </motion.button>
           </div>
           
-          {/* Enhanced Mobile Menu Button */}
-          <motion.button
-            className={`lg:hidden p-3 rounded-xl transition-all duration-300 z-10 ${
+          {/* Mobile Menu Button */}
+          <button
+            className={`lg:hidden p-3 rounded-xl transition-all duration-300 z-20 ${
               isScrolled 
                 ? 'text-gray-900 bg-gray-50/80 border border-gray-100' 
                 : 'text-white bg-white/10 border border-white/20'
             }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            whileTap={{ scale: 0.95 }}
           >
-            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+            <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
               <motion.div 
                 className={`w-6 h-0.5 rounded-full transition-all duration-300 ${
                   isScrolled ? 'bg-gray-900' : 'bg-white'
                 }`}
-                animate={mobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                animate={mobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
               />
               <motion.div 
                 className={`w-6 h-0.5 rounded-full transition-all duration-300 ${
@@ -143,13 +139,13 @@ export const Navigation = ({
                 className={`w-6 h-0.5 rounded-full transition-all duration-300 ${
                   isScrolled ? 'bg-gray-900' : 'bg-white'
                 }`}
-                animate={mobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                animate={mobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
               />
             </div>
-          </motion.button>
+          </button>
         </div>
 
-        {/* Premium Mobile Menu */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -162,53 +158,40 @@ export const Navigation = ({
               <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-gray-100/50">
                 <div className="space-y-2">
                   {navItems.map((item, index) => (
-                    <motion.button
+                    <button
                       key={item.id}
                       onClick={() => {
                         scrollToSection(item.id);
                         setMobileMenuOpen(false);
                       }}
-                      className={`w-full text-left py-4 px-6 rounded-xl transition-all duration-200 font-semibold group ${
+                      className={`w-full text-left py-4 px-6 rounded-xl transition-all duration-200 font-semibold ${
                         activeSection === item.id
-                          ? 'text-white shadow-lg transform scale-[0.98]'
+                          ? 'text-white shadow-lg'
                           : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
                       }`}
                       style={{
                         background: activeSection === item.id ? 'linear-gradient(135deg, #FF681E, #E04A00)' : undefined
                       }}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      whileTap={{ scale: 0.95 }}
                     >
                       <div className="flex items-center justify-between">
                         <span>{item.label}</span>
                         {activeSection === item.id && (
-                          <motion.div
-                            className="w-2 h-2 bg-white rounded-full"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.2 }}
-                          />
+                          <div className="w-2 h-2 bg-white rounded-full" />
                         )}
                       </div>
-                    </motion.button>
+                    </button>
                   ))}
                   
                   {/* Mobile CTA */}
-                  <motion.button
+                  <button
                     onClick={() => {
                       scrollToSection('contact');
                       setMobileMenuOpen(false);
                     }}
                     className="w-full mt-4 py-4 px-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    whileTap={{ scale: 0.95 }}
                   >
                     Get in Touch
-                  </motion.button>
+                  </button>
                 </div>
               </div>
             </motion.div>
